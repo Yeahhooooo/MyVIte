@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build:test": "vue-tsc && vite build --mode .env.test",
+    "build:pro": "vue-tsc && vite build --mode .env.production",
     "preview": "vite preview",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,vue}",
     "fix": "eslint src/**/*.{js,jsx,ts,tsx,vue} --fix",
@@ -16,6 +18,8 @@
     "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "element-plus": "^2.3.14",
     "prettier": "^3.0.3",
     "vue": "^3.3.4"
   },
@@ -26,13 +30,17 @@
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-vue": "^4.2.3",
+    "axios": "^1.5.1",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
+    "fast-glob": "^3.3.1",
     "husky": "^8.0.0",
+    "mockjs": "^1.1.0",
+    "pinia": "^2.0.34",
     "postcss": "^8.4.30",
     "postcss-html": "^1.5.0",
     "postcss-scss": "^4.0.8",
@@ -49,6 +57,9 @@
     "stylelint-scss": "^5.2.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
+    "vite-plugin-mock": "^2.9.8",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-router": "^4.2.5",
     "vue-tsc": "^1.8.5"
   }
 }
