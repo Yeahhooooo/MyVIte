@@ -5,8 +5,8 @@ import 'element-plus/dist/index.css'
 import 'virtual:svg-icons-register'
 import globalComponent from './components/index'
 import './styles/index.scss'
-import router from "./router";
-import pinia from "./store";
+import router from './router'
+import pinia from './store'
 
 const app = createApp(App)
 
@@ -18,4 +18,4 @@ app.use(router)
 
 app.use(pinia)
 
-app.mount("#app")
+app.mount('#app')

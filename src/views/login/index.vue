@@ -1,7 +1,11 @@
 <template>
   <div class="login_container">
     <div class="login_form">
-      <el-tabs v-model="activeName" class="demo-tabs" style="width: 60%; height: 80%">
+      <el-tabs
+        v-model="activeName"
+        class="demo-tabs"
+        style="width: 60%; height: 80%"
+      >
         <el-tab-pane label="登录" name="first">
           <LoginForm />
         </el-tab-pane>
@@ -14,24 +18,21 @@
 </template>
 
 <script setup>
-
-import {ref} from "vue";
-import LoginForm from "./components/loginForm/LoginForm.vue";
-import RegisterForm from "./components/registerForm/RegisterForm.vue";
+import { ref } from 'vue'
+import LoginForm from './components/loginForm/LoginForm.vue'
+import RegisterForm from './components/registerForm/RegisterForm.vue'
 
 const activeName = ref('first')
-
-
 </script>
 
 <style scoped lang="scss">
-.login_container{
+.login_container {
   width: 100%;
   height: 100vh;
   background-color: #2365a8;
 }
 
-.login_form{
+.login_form {
   width: 500px;
   height: 400px;
   position: relative;
@@ -51,5 +52,4 @@ const activeName = ref('first')
   font-size: 32px;
   font-weight: 600;
 }
-
 </style>

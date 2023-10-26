@@ -1,10 +1,10 @@
 <template>
-  <div>404</div>
+  <div>spu</div>
 </template>
 
 <script>
 export default {
-  name: 'index',
+  name: 'idnex',
 }
 </script>
 

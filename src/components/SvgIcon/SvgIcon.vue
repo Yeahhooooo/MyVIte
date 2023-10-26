@@ -1,5 +1,5 @@
 <template>
-  <svg style="width: 30px;height: 30px;">
+  <svg :style="style">
     <use :xlink:href="prefix + name"></use>
   </svg>
 </template>
@@ -8,18 +8,11 @@
 const props = defineProps({
   prefix: {
     type: String,
-    default: '#icon-'
+    default: '#icon-',
   },
-  name: String
+  name: String,
+  style: Object,
 })
-
-const url = props.prefix + props.name
-
-console.log(url)
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
