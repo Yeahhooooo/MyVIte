@@ -1,19 +1,19 @@
 <template>
   <div class="tabbar_right">
-    <el-button :icon="Refresh" circle />
-    <el-button :icon="FullScreen" circle />
+    <el-button :icon="Refresh" circle @click="handleRefresh"/>
+    <el-button :icon="FullScreen" circle @click="handleFullScreen"/>
     <el-button :icon="Setting" circle />
-    <el-avatar :size="30" :src="UserImg" style="margin-left: 10px" />
+    <el-avatar :size="30" :src="userStore.avatar" style="margin-left: 10px" />
     <el-dropdown style="margin-left: 10px">
       <el-button type="primary" size="small" plain>
-        Admin
+        {{ userStore.username }}
         <el-icon class="el-icon--right">
           <arrow-down />
         </el-icon>
       </el-button>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -28,10 +28,33 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 import { ref } from 'vue'
+import SettingStore from "../../../../store/modules/setting"
+import UserStore from "../../../../store/modules/user"
+import router from "../../../../router";
 
-const UserImg = ref(
-  'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
-)
+
+const userStore = UserStore()
+
+const settingStore = SettingStore()
+
+const handleRefresh = () => {
+  settingStore.setRefresh(!settingStore.refresh)
+}
+
+
+const handleFullScreen = () => {
+  let full = document.fullscreenElement
+  if(!full){
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
+
+const handleLogout = () => {
+  userStore.userLogout()
+  router.push("/login")
+}
 </script>
 
 <style scoped>

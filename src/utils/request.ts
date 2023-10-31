@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElLoading, ElMessage } from 'element-plus'
+import UserStore from "../store/modules/user"
 
 let request = axios.create({
   timeout: 5000,
@@ -9,6 +10,13 @@ let loading = null
 
 request.interceptors.request.use((config) => {
   loading = ElLoading.service()
+
+  let userStore = UserStore()
+
+  if(userStore.token){
+    config.headers.token = userStore.token
+  }
+
   return config
 })
 
@@ -18,6 +26,7 @@ request.interceptors.response.use(
     return response.data
   },
   (error) => {
+    loading.close()
     let message = ''
     let status = error.response.status
     switch (status) {
