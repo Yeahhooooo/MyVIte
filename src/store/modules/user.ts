@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {reqLogin, reqRegister, reqUserInfo} from '../../api/user'
+import {reqLogin, reqLogout, reqRegister, reqUserInfo} from '../../api/user'
 import { LoginForm, LoginResponse } from '../../api/user/type'
 import type { UserState } from './types/user'
 import { GET_TOKEN, SET_TOKEN } from '../../utils/token'
@@ -17,16 +17,15 @@ let userStore = defineStore('User', {
   },
   actions: {
     async userLogin(type: string, data: LoginForm) {
-      console.log(type)
       let result: LoginResponse =
         type == 'login' ? await reqLogin(data) : await reqRegister(data)
-      console.log(result.data.token)
+      console.log(result)
       if (result.code === 200) {
-        this.token = result.data.token as string
-        SET_TOKEN(result.data.token as string)
+        this.token = result.data as string
+        SET_TOKEN(result.data as string)
         return 'ok'
       } else {
-        return Promise.reject(new Error(result.data.message as string))
+        return Promise.reject(new Error(result.data as string))
       }
     },
     async getUserInfo(){
@@ -39,11 +38,20 @@ let userStore = defineStore('User', {
         return Promise.reject('Invalid User Info')
       }
     },
-    userLogout(){
-      this.token = ''
-      this.username = ''
-      this.avatar = ''
-      localStorage.removeItem('TOKEN')
+    async userLogout(){
+      let result = await reqLogout()
+      console.log(result)
+      if(result.code === 200){
+        this.token = ''
+        this.username = ''
+        this.avatar = ''
+        localStorage.removeItem('TOKEN')
+        return 'ok'
+      } else {
+        return Promise.reject('Logout Failed')
+      }
+
+
     }
   },
   getters: {},

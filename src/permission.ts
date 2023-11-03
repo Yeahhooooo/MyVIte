@@ -6,15 +6,15 @@ import userStore from "./store/modules/user";
 
 let UserStore = userStore(pinia)
 
-router.beforeEach((to: any,from : any, next: any) => {
+nprogress.configure({ showSpinner:false })
+
+router.beforeEach(async (to: any,from : any, next: any) => {
 
     nprogress.start()
 
     let token = UserStore.token
 
     let userName = UserStore.username
-
-    next()
 
     if(token && token !== ''){
         if(to.path === '/login'){
@@ -23,6 +23,13 @@ router.beforeEach((to: any,from : any, next: any) => {
             if(userName){
                 next()
             } else  {
+                try {
+                    await UserStore.getUserInfo()
+                    next()
+                } catch (e) {
+                    await UserStore.userLogout()
+                    next({ path:'/login' })
+                }
             }
         }
     } else {

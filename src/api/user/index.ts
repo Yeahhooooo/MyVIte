@@ -2,9 +2,11 @@ import request from '../../utils/request'
 import { LoginForm, LoginResponse, UserInfoResponseData } from './type'
 
 enum API {
-  REGISTER_URI = 'http://localhost:3000/users/register',
-  LOGIN_URI = 'http://localhost:3000/users/login',
-  USERINFO_uri = 'http://localhost:3000/users/info',
+  REGISTER_URI = '/api/users/register',
+  LOGIN_URI = '/api/users/login',
+  USERINFO_uri = '/api/users/info',
+
+  LOGOUT_URI = '/api/users/logout'
 }
 
 export const reqRegister = (data: LoginForm) =>
@@ -14,3 +16,6 @@ export const reqLogin = (data: LoginForm) =>
 
 export const reqUserInfo = () =>
   request.get<any, UserInfoResponseData>(API.USERINFO_uri)
+
+export const reqLogout = () =>
+    request.post<any,any>(API.LOGOUT_URI)

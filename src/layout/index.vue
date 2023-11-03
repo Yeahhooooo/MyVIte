@@ -61,7 +61,7 @@ const settingStore = SettingStore()
 .common-layout {
   width: 100%;
   height: 100vh;
-  background-color: #9a9191;
+  background-color: #e1e1e1;
 }
 
 .aside {
@@ -103,7 +103,6 @@ aside::-webkit-scrollbar-thumb {
 .mainContent {
   width: 100%;
   height: 500px;
-  background-color: #2365a8;
   display: flex;
   flex-direction: row;
   justify-content: center;

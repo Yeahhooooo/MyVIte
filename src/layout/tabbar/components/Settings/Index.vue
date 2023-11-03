@@ -51,8 +51,8 @@ const handleFullScreen = () => {
   }
 }
 
-const handleLogout = () => {
-  userStore.userLogout()
+const handleLogout = async () => {
+  await userStore.userLogout()
   router.push("/login")
 }
 </script>

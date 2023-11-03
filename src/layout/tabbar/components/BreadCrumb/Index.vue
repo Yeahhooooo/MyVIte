@@ -14,10 +14,12 @@
         :key="index"
         :to="item.path"
       >
-        <el-icon>
-          <component :is="item.meta.icon"></component>
-        </el-icon>
-        {{ item.meta.title }}
+        <div style="display: flex;flex-direction: row;cursor: pointer">
+          <el-icon color="white">
+            <component :is="item.meta.icon"></component>
+          </el-icon>
+          <p style="color: white">{{ item.meta.title }}</p>
+        </div>
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
